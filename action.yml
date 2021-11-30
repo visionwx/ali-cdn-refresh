@@ -1,0 +1,27 @@
+name: 'Aliyun CDN Refresh Action'
+description: 'Refresh aliyun cdn'
+author: 'VisionWX'
+branding:
+  icon: 'upload'
+  color: 'gray-dark'
+inputs:
+  accessKeyId:
+    description: 'Aliyun accessKeyId.'
+    required: true
+  accessKeySecret:
+    description: 'Aliyun accessKeySecret.'
+    required: true
+  type:
+    description: 'Refresh type, File or Directory.'
+    required: true
+  path:
+    description: 'The file/directory to refresh'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    ACCESS_KEY_ID: ${{ inputs.accessKeyId }}
+    ACCESS_KEY_SECRET: ${{ inputs.accessKeySecret }}
+    OBJECT_TYPE: ${{ inputs.type }}
+    OBJECT_PATH: ${{ inputs.path }}
